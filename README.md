@@ -8,4 +8,4 @@ use libcurl to transfer files between client and server:
 https://curl.se/libcurl/c/sftpget.html
 
 this is a total package of shit:
-https://curl.se/libcurl/c/sftpget.html
+https://github.com/uniqss/file-sync
