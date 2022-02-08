@@ -10,7 +10,8 @@
             "request": "launch",
 
             // msys2 or cygwin with gdb 9.*
-            "program": "${workspaceFolder}/bin/usync.exe",
+            // "program": "${workspaceFolder}/bin/usync.exe",
+            "program": "${workspaceFolder}/bin/test.exe",
 
             "args": [],
             "stopAtEntry": false,

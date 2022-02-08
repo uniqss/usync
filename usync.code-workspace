@@ -88,7 +88,9 @@
 			"xutility": "cpp",
 			"*.h": "cpp",
 			"*.c": "cpp",
-			"*.cpp": "cpp"
+			"*.cpp": "cpp",
+			"deque": "cpp",
+			"queue": "cpp"
 		}
 	}
 }

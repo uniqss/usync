@@ -6,12 +6,17 @@
 #include <algorithm>
 #include <cctype>
 
+#include <thread>
+#include <chrono>
+
 int main() {
+    // std::cout << "pid:" << std::this_thread::get_id() << std::endl;
+
     int ret = 0;
     std::vector<std::string> paths = {"./"};
     g_working = true;
 
-    ret = monitor_init(paths, true);
+    ret = monitor_init(paths);
     if (ret != 0) {
         return ret;
     }
@@ -27,6 +32,7 @@ int main() {
 
     g_working = false;
 
+    ++g_waitgroupTerminating;
     ret = monitor_uninit();
     if (ret != 0) {
         return ret;
