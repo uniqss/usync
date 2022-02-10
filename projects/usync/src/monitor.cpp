@@ -11,36 +11,25 @@
 std::atomic_bool g_working;
 std::atomic_int g_waitgroupTerminating;
 
-std::unordered_set<std::pair<std::string, std::string>, StringPairHash> g_listNewOrChanged;
-std::unordered_set<std::pair<std::string, std::string>, StringPairHash> g_listDeleted;
-std::mutex g_listNewOrChangedMtx;
-std::mutex g_listDeletedMtx;
+UniqsSyncQueue g_listNewOrChanged;
+UniqsSyncQueue g_listDeleted;
 
 static void watch_callback(dmon_watch_id watch_id, dmon_action action, const char* rootdir, const char* filepath, const char* oldfilepath, void* user) {
     // receive change events. type of event is stored in 'action' variable
     // std::cout << "pid:" << std::this_thread::get_id() << std::endl;
-    printf(" %u %d %s %s %s \n", watch_id.id, action, rootdir, filepath, oldfilepath);
+    // printf(" %u %d %s %s %s \n", watch_id.id, action, rootdir, filepath, oldfilepath);
 
     switch (action) {
         case DMON_ACTION_CREATE:
         case DMON_ACTION_MODIFY:
-            g_listNewOrChangedMtx.lock();
-            g_listNewOrChanged.insert({rootdir, filepath});
-            g_listNewOrChangedMtx.unlock();
+            g_listNewOrChanged.add(rootdir, filepath);
             break;
         case DMON_ACTION_DELETE:
-            g_listDeletedMtx.lock();
-            g_listDeleted.insert({rootdir, filepath});
-            g_listDeletedMtx.unlock();
+            g_listDeleted.add(rootdir, filepath);
             break;
         case DMON_ACTION_MOVE:
-            g_listNewOrChangedMtx.lock();
-            g_listNewOrChanged.insert({rootdir, filepath});
-            g_listNewOrChangedMtx.unlock();
-
-            g_listDeletedMtx.lock();
-            g_listDeleted.insert({rootdir, oldfilepath});
-            g_listDeletedMtx.unlock();
+            g_listNewOrChanged.add(rootdir, filepath);
+            g_listDeleted.add(rootdir, oldfilepath);
             break;
         default:
             break;

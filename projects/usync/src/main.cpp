@@ -15,7 +15,6 @@ int main() {
     // std::cout << "pid:" << std::this_thread::get_id() << std::endl;
 
     int ret = 0;
-    std::vector<std::string> paths = {"./"};
     g_working = true;
 
     ret = usync_config_loadcfg();
@@ -23,6 +22,7 @@ int main() {
         return ret;
     }
 
+    std::vector<std::string> paths = {g_usyncConfig.localDir};
     ret = monitor_init(paths);
     if (ret != 0) {
         return ret;

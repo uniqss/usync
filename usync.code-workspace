@@ -95,7 +95,10 @@
 			"condition_variable": "cpp",
 			"functional": "cpp",
 			"ranges": "cpp",
-			"span": "cpp"
+			"span": "cpp",
+			"codecvt": "cpp",
+			"stack": "cpp",
+			"filesystem": "cpp"
 		}
 	}
 }
