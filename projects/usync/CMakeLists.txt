@@ -7,6 +7,9 @@ PROJECT(${PNAME})
 INCLUDE(../cmake/ModuleImport.cmake)
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
 INCLUDE(../cmake/ModuleCompileOptions.cmake)
+
+find_package(Libssh2 REQUIRED CONFIG)
+
 ModuleSetCompileOptions()
 ModuleSetWinCompilerFlags()
 
@@ -32,3 +35,4 @@ IF (WIN32)
 ENDIF(WIN32)
 
 ADD_EXECUTABLE(${PNAME} ${project_src_cpp} ${project_src_h} ${cfg_src_cpp} ${cfg_src_h} ${project_include})
+target_link_libraries(${PNAME} Libssh2::libssh2)

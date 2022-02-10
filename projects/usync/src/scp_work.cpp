@@ -2,13 +2,29 @@
 
 #include "inc.h"
 
-#include "scp_work_inl.inc"
+#include "usync_config.h"
+
+#include "usync_macros.h"
+#include "uniqs_ssh_scp.h"
+#include "uniqs_ssh_exec.h"
 
 static void scp_new_or_changed(int max) {
     if (g_listNewOrChangedMtx.try_lock()) {
         int count = 0;
         for (auto it = g_listNewOrChanged.begin(); it != g_listNewOrChanged.end();) {
-            scp_one_file(it->first, it->second);
+            if (it->second.empty()) {
+                std::string cmd = "mkdir -p ";
+                cmd += g_usyncConfig.remoteDir + it->first;
+                printf("cmd:%s\n", cmd.c_str());
+                uniqs_ssh_exec(g_usyncConfig.sshHost.c_str(), g_usyncConfig.sshPort, g_usyncConfig.sshUserName.c_str(), g_usyncConfig.sshPassword.c_str(),
+                               cmd.c_str());
+            } else {
+                std::string localfile = it->first + it->second;
+                std::string remotefile = g_usyncConfig.remoteDir + it->first + it->second;
+                printf("localfile:%s remotefile:%s\n", localfile.c_str(), remotefile.c_str());
+                uniqs_ssh_scp(g_usyncConfig.sshHost.c_str(), g_usyncConfig.sshPort, g_usyncConfig.sshUserName.c_str(), g_usyncConfig.sshPassword.c_str(),
+                              localfile.c_str(), remotefile.c_str());
+            }
             it = g_listNewOrChanged.erase(it);
             if (++count > max) break;
         }
@@ -21,7 +37,19 @@ static void scp_deleted(int max) {
     if (g_listDeletedMtx.try_lock()) {
         int count = 0;
         for (auto it = g_listDeleted.begin(); it != g_listDeleted.end();) {
-            scp_one_file(it->first, it->second);
+            if (it->second.empty()) {
+                std::string cmd = "rm -rf ";
+                cmd += g_usyncConfig.remoteDir + it->first;
+                printf("cmd:%s\n", cmd.c_str());
+                uniqs_ssh_exec(g_usyncConfig.sshHost.c_str(), g_usyncConfig.sshPort, g_usyncConfig.sshUserName.c_str(), g_usyncConfig.sshPassword.c_str(),
+                               cmd.c_str());
+            } else {
+                std::string cmd = "rm -rf ";
+                cmd += g_usyncConfig.remoteDir + it->first + it->second;
+                printf("cmd:%s\n", cmd.c_str());
+                uniqs_ssh_exec(g_usyncConfig.sshHost.c_str(), g_usyncConfig.sshPort, g_usyncConfig.sshUserName.c_str(), g_usyncConfig.sshPassword.c_str(),
+                               cmd.c_str());
+            }
             it = g_listDeleted.erase(it);
             if (++count > max) break;
         }
