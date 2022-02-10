@@ -16,3 +16,4 @@ struct USyncConfig{
 extern USyncConfig g_usyncConfig;
 
 int usync_config_loadcfg();
+void usync_config_debug_print(const USyncConfig& cfg);

@@ -5,6 +5,10 @@
 
 USyncConfig g_usyncConfig;
 
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
 int usync_config_loadcfg() {
     configuru::Config cfg = configuru::parse_file("usync_config.json", configuru::JSON);
 
@@ -19,4 +23,14 @@ int usync_config_loadcfg() {
     }
 
     return 0;
+}
+
+void usync_config_debug_print(const USyncConfig& cfg) {
+    cout << cfg.localDir << endl;
+    cout << cfg.remoteDir << endl;
+    cout << cfg.sshHost << endl;
+    cout << cfg.sshPort << endl;
+    cout << cfg.sshUserName << endl;
+    cout << cfg.sshPassword << endl;
+    std::for_each(cfg.ignoreRegex.begin(), cfg.ignoreRegex.end(), [](const std::string& str) { cout << str << endl; });
 }
