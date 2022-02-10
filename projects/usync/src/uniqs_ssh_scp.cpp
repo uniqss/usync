@@ -33,7 +33,7 @@
 
 int uniqs_ssh_scp(const char *host, unsigned short port, const char *username, const char *password, const char *loclfile, const char *scppath) {
     unsigned long hostaddr;
-    int sock, i, auth_pw = 1;
+    int sock, auth_pw = 1;
     struct sockaddr_in sin;
     const char *fingerprint;
     LIBSSH2_SESSION *session = NULL;
@@ -125,7 +125,7 @@ int uniqs_ssh_scp(const char *host, unsigned short port, const char *username, c
     fingerprint = libssh2_hostkey_hash(session, LIBSSH2_HOSTKEY_HASH_SHA1);
 #if USYNC_PRINT_DBG
     fprintf(stderr, "Fingerprint: ");
-    for (i = 0; i < 20; i++) {
+    for (int i = 0; i < 20; i++) {
         fprintf(stderr, "%02X ", (unsigned char)fingerprint[i]);
     }
     fprintf(stderr, "\n");

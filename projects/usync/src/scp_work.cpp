@@ -8,7 +8,6 @@
 #include "uniqs_ssh_scp.h"
 #include "uniqs_ssh_exec.h"
 
-#include <sys/stat.h>
 #include <filesystem>
 
 #if 0
@@ -20,7 +19,7 @@ static bool is_dir(const char* path) {
 }
 
 static void scp_new_or_changed(int max) {
-    g_listNewOrChanged.foreach (max, [](const std::string& first, const std::string& second) {
+    int remain = g_listNewOrChanged.foreach (max, [](const std::string& first, const std::string& second) {
         std::string localfile = first + second;
         bool isdir = is_dir(localfile.c_str());
 
@@ -42,10 +41,13 @@ static void scp_new_or_changed(int max) {
 #endif
         }
     });
+    if (remain > 0){
+        printf("new or changed remain:%d \n", remain);
+    }
 }
 
 static void scp_deleted(int max) {
-    g_listDeleted.foreach (max, [](const std::string& first, const std::string& second) {
+    int remain = g_listDeleted.foreach (max, [](const std::string& first, const std::string& second) {
         std::string localfile = first + second;
         bool isdir = is_dir(localfile.c_str());
         if (isdir) {
@@ -66,6 +68,9 @@ static void scp_deleted(int max) {
 #endif
         }
     });
+    if (remain > 0){
+        printf("new or changed remain:%d \n", remain);
+    }
 }
 
 static void scp_thread(int frameSyncCount, int frameSleepMs) {

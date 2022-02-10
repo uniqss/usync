@@ -20,5 +20,5 @@ class UniqsSyncQueue {
 
    public:
     void add(const char* rootdir, const char* filepath);
-    void foreach (int maxelement, std::function<void(const std::string&, const std::string&)> fn);
+    int foreach (int maxelement, std::function<void(const std::string&, const std::string&)> fn);
 };

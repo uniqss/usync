@@ -1,1 +1,1 @@
-g++ -g -Wall -o ../../bin/test.exe -lpthread test_dmon.c -I ../dmon
+g++ -g -Wall -lpthread test_dmon.c -I ../dmon

@@ -235,12 +235,11 @@ int uniqs_ssh_exec(const char *hostname, unsigned short port, const char *userna
             char buffer[0x4000];
             rc = libssh2_channel_read(channel, buffer, sizeof(buffer));
             if (rc > 0) {
-                int i;
                 bytecount += rc;
 
 #if USYNC_PRINT_DBG
                 fprintf(stderr, "We read:\n");
-                for (i = 0; i < rc; ++i) fputc(buffer[i], stderr);
+                for (int i = 0; i < rc; ++i) fputc(buffer[i], stderr);
                 fprintf(stderr, "\n");
 #endif
 
