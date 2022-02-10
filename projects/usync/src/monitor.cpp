@@ -2,6 +2,8 @@
 
 #include "inc.h"
 
+#include "usync_config.h"
+
 #define DMON_IMPL
 #include "dmon.h"
 
@@ -18,6 +20,10 @@ static void watch_callback(dmon_watch_id watch_id, dmon_action action, const cha
     // receive change events. type of event is stored in 'action' variable
     // std::cout << "pid:" << std::this_thread::get_id() << std::endl;
     // printf(" %u %d %s %s %s \n", watch_id.id, action, rootdir, filepath, oldfilepath);
+
+    for (const auto& it : g_usyncConfig.ignoreRegex) {
+        if (strstr(filepath, it.c_str())) return;
+    }
 
     switch (action) {
         case DMON_ACTION_CREATE:
