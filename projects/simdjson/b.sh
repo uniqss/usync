@@ -1,0 +1,1 @@
+g++ -g -Wall test.cpp simdjson.cpp

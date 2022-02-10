@@ -1,5 +1,7 @@
 #include "inc.h"
 #include "monitor.h"
+#include "scp_work.h"
+#include "usync_config.h"
 
 #include <string>
 #include <iostream>
@@ -16,7 +18,17 @@ int main() {
     std::vector<std::string> paths = {"./"};
     g_working = true;
 
+    ret = usync_config_loadcfg();
+    if (ret != 0) {
+        return ret;
+    }
+
     ret = monitor_init(paths);
+    if (ret != 0) {
+        return ret;
+    }
+
+    ret = scp_start(1000, 500);
     if (ret != 0) {
         return ret;
     }

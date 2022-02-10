@@ -90,7 +90,12 @@
 			"*.c": "cpp",
 			"*.cpp": "cpp",
 			"deque": "cpp",
-			"queue": "cpp"
+			"queue": "cpp",
+			"cinttypes": "cpp",
+			"condition_variable": "cpp",
+			"functional": "cpp",
+			"ranges": "cpp",
+			"span": "cpp"
 		}
 	}
 }

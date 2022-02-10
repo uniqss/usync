@@ -1,0 +1,19 @@
+{
+	"localDir": "E:/file_sync/workspace/gkit/",
+	"remoteDir": "/home/uniqs/gkit-devops/",
+
+	"sshHost": "192.168.1.177",
+	"sshPort": 22,
+	"sshUserName": "uniqs",
+	"sshPassword": "wwlovecoding",
+
+	"ignoreRegex": [
+		".git",
+		".idea",
+		".swp",
+		".swx",
+		".sln",
+		".svn",
+		"node_modules"
+	]
+}

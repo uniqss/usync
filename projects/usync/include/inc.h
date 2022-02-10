@@ -18,7 +18,8 @@ struct StringPairHash {
 
 extern std::unordered_set<std::pair<std::string, std::string>, StringPairHash> g_listNewOrChanged;
 extern std::unordered_set<std::pair<std::string, std::string>, StringPairHash> g_listDeleted;
-extern std::mutex g_fileListChangeMtx;
+extern std::mutex g_listNewOrChangedMtx;
+extern std::mutex g_listDeletedMtx;
 
 
 // remember to change this on other platforms. g++ can't detech win.
