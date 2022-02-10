@@ -1,8 +1,9 @@
 # usync
 uniqs cross platform file and folder sync
 
-use this library or some other library to monitor file change:
-https://github.com/septag/dmon
+use [dmon][https://github.com/septag/dmon] or some other library to monitor file change:
 
-use libcurl to transfer files between client and server:
-https://curl.se/libcurl/c/sftpget.html
+use libssh2 to transfer files between client and server
+
+# todo:
+* multibyte problem
