@@ -10,11 +10,10 @@ libssh2 depends:
 * zlib : [homepage](https://github.com/madler/zlib) v1.2.11 [download](https://github.com/madler/zlib/releases/tag/v1.2.11)
 
 ### todo:
-* linux port
 * mac port
 
 ### build:
 * win use [cygwin](https://www.cygwin.com/) to build. build shell: projects/usync/build_win_cygwin.sh. you muse make and make install openssl and zlib first, check the build steps of openssl and zlib in the link above for detail.
-* linux not tested currently.
+* linux build shell: projects/usync/build_ubuntu.sh.
 * mac not tested currently.
 
