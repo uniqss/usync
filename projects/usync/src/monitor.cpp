@@ -1,4 +1,4 @@
-#if 1
+#if defined(UNIQS_PLATFORM_WINDOWS)||defined(uniqs_platform_windows)
 #define _WIN64
 #endif
 
