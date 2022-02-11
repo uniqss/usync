@@ -14,6 +14,6 @@ libssh2 depends:
 
 ### build:
 * win use [cygwin](https://www.cygwin.com/) to build. build shell: projects/usync/build_win_cygwin.sh. you muse make and make install openssl and zlib first, check the build steps of openssl and zlib in the link above for detail.
-* linux build shell: projects/usync/build_ubuntu.sh.
+* linux build shell: projects/usync/build_ubuntu.sh. linux build is so simple that we will not publish linux runnable version. If needed, just leave a message or submit an issue at your convenience.
 * mac not tested currently.
 
