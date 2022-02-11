@@ -89,6 +89,8 @@ macro(ModuleSetCompileOptions)
       ADD_DEFINITIONS(/bigobj)
       ADD_DEFINITIONS(/DNOMINMAX /DWIN32_LEAN_AND_MEAN=1 /D_CRT_SECURE_NO_WARNINGS /D_SCL_SECURE_NO_WARNINGS)
 
+      # add_definitions(-DUNICODE -D_UNICODE)
+
       ADD_COMPILE_OPTIONS(/W3 /wd4005 /wd4068 /wd4244 /wd4267 /wd4800)
       IF (MSVC_VERSION GREATER_EQUAL 1900)
         CHECK_CXX_COMPILER_FLAG("/std:c++latest" _cpp_latest_flag_supported)

@@ -47,7 +47,7 @@ static void watch_callback_i(int action, const char* rootdir, const char* filepa
 
 static void watch_callback(dmon_watch_id watch_id, dmon_action action, const char* rootdir, const char* filepath, const char* oldfilepath, void* user) {
     // receive change events. type of event is stored in 'action' variable
-    // printf("%u %d %s %s %s \n", watch_id.id, action, rootdir, filepath, oldfilepath);
+    printf("%u %d %s %s %s \n", watch_id.id, action, rootdir, filepath, oldfilepath);
 
     std::string path;
 
@@ -57,7 +57,7 @@ static void watch_callback(dmon_watch_id watch_id, dmon_action action, const cha
             path = rootdir;
             path += filepath;
             watch_callback_i(action, rootdir, filepath, oldfilepath);
-            if (fs::is_directory(path)) {
+            if (fs::is_directory(fs::path(path, fs::path::generic_format))) {
                 for (auto const& dir_entry : std::filesystem::recursive_directory_iterator(path)) {
                     // std::cout << dir_entry << '\n';
                     std::string dir_entry_path = dir_entry.path().generic_string().substr(strlen(rootdir));
