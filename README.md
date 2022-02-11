@@ -1,9 +1,9 @@
 # usync
 uniqs cross platform file and folder sync
 
-use [dmon](https://github.com/septag/dmon) or some other library to monitor file change:
+currently use [dmon](https://github.com/septag/dmon) to monitor file change:
 
-use [libssh2](https://github.com/libssh2/libssh2) to transfer files between client and server
+currently use [libssh2](https://github.com/libssh2/libssh2) to transfer files between client and server
 libssh2 depends:
 * openssl : [homepage](https://github.com/openssl/openssl) 1.1.1m [download](https://github.com/openssl/openssl/releases/tag/OpenSSL_1_1_1m)
 * zlib : [homepage](https://github.com/madler/zlib) v1.2.11 [download](https://github.com/madler/zlib/releases/tag/v1.2.11)
