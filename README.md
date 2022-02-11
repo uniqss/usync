@@ -13,7 +13,7 @@ libssh2 depends:
 * mac port
 
 # build:
-* win use vcpkg and cmake to build.
+* win use [cygwin](https://www.cygwin.com/) to build. build shell: projects/usync/b.sh. you muse make and make install openssl and zlib first, check the build steps of openssl and zlib in the link above for detail.
 * linux not tested currently.
 * mac not tested currently.
 
