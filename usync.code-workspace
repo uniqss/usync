@@ -98,7 +98,8 @@
 			"span": "cpp",
 			"codecvt": "cpp",
 			"stack": "cpp",
-			"filesystem": "cpp"
+			"filesystem": "cpp",
+			"complex": "cpp"
 		}
 	}
 }

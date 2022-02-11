@@ -1,11 +1,15 @@
+#if 1
+#define _WIN64
+#endif
+
+#define DMON_IMPL
+#include "dmon.h"
+
 #include "monitor.h"
 
 #include "inc.h"
 
 #include "usync_config.h"
-
-#define DMON_IMPL
-#include "dmon.h"
 
 #include <iostream>
 #include <thread>
@@ -57,7 +61,7 @@ static void watch_callback(dmon_watch_id watch_id, dmon_action action, const cha
             path = rootdir;
             path += filepath;
             watch_callback_i(action, rootdir, filepath, oldfilepath);
-            if (fs::is_directory(fs::path(path, fs::path::generic_format))) {
+            if (fs::is_directory(path)) {
                 for (auto const& dir_entry : std::filesystem::recursive_directory_iterator(path)) {
                     // std::cout << dir_entry << '\n';
                     std::string dir_entry_path = dir_entry.path().generic_string().substr(strlen(rootdir));

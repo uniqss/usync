@@ -130,7 +130,7 @@ int uniqs_ssh_exec(const char *hostname, unsigned short port, const char *userna
         ;
     if (rc) {
 #if USYNC_PRINT_ERROR
-        fprintf(stderr, "Failure establishing SSH session: %d\n", rc);
+        fprintf(stderr, "exec Failure establishing SSH session: %d\n", rc);
 #endif
         return -1;
     }
