@@ -14,7 +14,7 @@ libssh2 depends:
 * mac port
 
 ### build:
-* win use [cygwin](https://www.cygwin.com/) to build. build shell: projects/usync/b.sh. you muse make and make install openssl and zlib first, check the build steps of openssl and zlib in the link above for detail.
+* win use [cygwin](https://www.cygwin.com/) to build. build shell: projects/usync/build_win_cygwin.sh. you muse make and make install openssl and zlib first, check the build steps of openssl and zlib in the link above for detail.
 * linux not tested currently.
 * mac not tested currently.
 
